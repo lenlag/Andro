@@ -10,4 +10,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="imageTitreDesc">Image Titre</string>
+    <string name="imageRealisateurDesc">Image Réalisateur</string>
+    <string name="listMovies">List of movies</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>

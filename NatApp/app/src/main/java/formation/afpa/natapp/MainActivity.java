@@ -38,20 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         list.setAdapter(adapter);
 
-
-//        list.setOnClickListener(new AdapterView.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//
-//            @Override
-//            public void onItemClick(View v) {
-//                Intent intent = new Intent().setClass(MainActivity.this, DetailsActivity.class);
-//                intent.putExtra("MY_FILMS", data.getMovie());
-//                startActivity(intent);
-//            }
-//        });
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -63,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 
     @Override
     public void onBackPressed() {
