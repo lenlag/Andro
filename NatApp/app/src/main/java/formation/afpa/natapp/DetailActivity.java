@@ -31,6 +31,9 @@ public class DetailActivity extends AppCompatActivity {
         TextView realisateur = findViewById(R.id.textView2);
         realisateur.setText(film.getReal().getName());
 
+        TextView annee = findViewById(R.id.textView4);
+        annee.setText(film.getYear());
+
         ImageView image1 = findViewById(R.id.imageView);
         image1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,5 +54,6 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }
