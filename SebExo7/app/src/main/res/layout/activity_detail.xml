@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity">
+
+    <TextView
+        android:id="@+id/titreTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="77dp"
+        android:layout_marginLeft="77dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginRight="65dp"
+        android:text="Titre :"
+        app:layout_constraintEnd_toStartOf="@+id/titreValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titreValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="34dp"
+        android:text="..."
+        app:layout_constraintStart_toEndOf="@+id/titreTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nomRealTitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nom réal :"
+        app:layout_constraintBaseline_toBaselineOf="@+id/nomRealValue"
+        app:layout_constraintStart_toStartOf="@+id/titreTitle" />
+
+    <TextView
+        android:id="@+id/nomRealValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:text="..."
+        app:layout_constraintStart_toStartOf="@+id/titreValue"
+        app:layout_constraintTop_toBottomOf="@+id/titreValue" />
+
+    <TextView
+        android:id="@+id/anneeTitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:text="Année :"
+        app:layout_constraintStart_toStartOf="@+id/nomRealTitre"
+        app:layout_constraintTop_toBottomOf="@+id/nomRealTitre" />
+
+    <TextView
+        android:id="@+id/anneeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:text="..."
+        app:layout_constraintStart_toEndOf="@+id/nomRealValue"
+        app:layout_constraintTop_toBottomOf="@+id/nomRealValue" />
+
+    <ImageView
+        android:id="@+id/imageViewTitre"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/titreTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:contentDescription="MovieImage" />
+
+    <ImageView
+        android:id="@+id/imageViewNom"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:contentDescription="RealIamge"
+        app:layout_constraintEnd_toStartOf="@+id/nomRealTitre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewTitre"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+</android.support.constraint.ConstraintLayout>
