@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Exo 03</string>
+    <string name="action_settings">Settings</string>>
+    <string name="text_testBtn">Je suis un text stocké dans string.xml</string>
+    <string name="titleDialogue">Je suis un titre</string>
+    <string name="textDialogue">Je suis un Corp de text</string>
+    <string name="yes">OUI</string>
+    <string name="no">NON</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_pref_url_Json">URI JSON</string>
+</resources>
+
+<!--<string name="pref_url_Json">http://tarzanman.free.fr/epsi/epsi.html</string>-->
+
+
