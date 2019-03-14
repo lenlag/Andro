@@ -1,6 +1,8 @@
-package model;
+package formation.afpa.natspecies.model;
 
-public class Specie {
+import java.io.Serializable;
+
+public class Specie implements Serializable {
 
     private int id;
     private String commonName;
