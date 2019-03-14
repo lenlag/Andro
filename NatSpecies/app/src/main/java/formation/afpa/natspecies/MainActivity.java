@@ -10,9 +10,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +27,8 @@ import formation.afpa.natspecies.model.Specie;
 
 public class MainActivity extends AppCompatActivity implements InetworkListener {
 
-    private List<Specie> specielist = new ArrayList<Specie>();
+    private List<Specie> specielist;
+    private ListView listViewSpecies;
 
     ////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////HANDLER/////////////////////////////////////////////////////
@@ -35,7 +40,24 @@ public class MainActivity extends AppCompatActivity implements InetworkListener 
         public void handleMessage(Message msg) {
             //si le thread a renvoyé qq chose
             if(msg.obj != null) {
-                super.handleMessage(msg);
+
+                try {
+                    specielist = new ArrayList<Specie>();
+                    JSONArray jsonArray = new JSONArray(msg.obj);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObj = jsonArray.getJSONObject(i);
+                        String commonName = jsonObj.getString("commonName");
+                        String latinName = jsonObj.getString("latinName");
+                        int id = jsonObj.getInt("id");
+
+                        Specie newSpecie = new Specie(id, commonName, latinName);
+                        specielist.add(newSpecie);
+                    }
+                } catch (Exception JSONException){
+
+                }
+                ArrayAdapter myAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, specielist);
+                listViewSpecies.setAdapter(myAdapter);
             }
 
         }
@@ -79,10 +101,10 @@ public class MainActivity extends AppCompatActivity implements InetworkListener 
 //        TextView textSpecies = findViewById(R.id.textView2);
 
 
-        ListView listSpecies = findViewById(R.id.listView);
+       listViewSpecies = findViewById(R.id.listView);
 
         //surcharge de la fonction onItemClick pour pouvoir charger le text de textView avec le common et latin name de Specie cliquée
-        listSpecies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewSpecies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

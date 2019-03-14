@@ -8,6 +8,19 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/deleteActionButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="395dp"
@@ -52,18 +65,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewWelcome" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/addActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="302dp"
-        android:layout_marginLeft="302dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="53dp"
-        android:layout_marginRight="53dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="13dp"
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listView"
         app:srcCompat="@android:drawable/ic_input_add" />

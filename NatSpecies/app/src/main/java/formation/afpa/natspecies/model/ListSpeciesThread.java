@@ -46,8 +46,8 @@ public class ListSpeciesThread extends Thread {
 
             String text;
 
-            //on lis chaque ligne et l'ajoute dans msgTxt
-            // on stop la boucle quand "text" recois une valeur NULL
+            //on lit chaque ligne et l'ajoute dans msgTxt
+            // on stop la boucle quand "text" recoit une valeur NULL
             while((text = br.readLine()) != null){
                 msgText = msgText + text;
             }
