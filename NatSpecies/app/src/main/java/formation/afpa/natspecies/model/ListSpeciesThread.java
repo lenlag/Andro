@@ -56,7 +56,7 @@ public class ListSpeciesThread extends Thread {
             in.setNetAdapter(msgText);
 
         } catch (Exception ex) {
-            //si erreur => appel de la f-on setNetException depus le MainACtivity
+            //si erreur => appel de la f-on setNetException depuis le MainACtivity
             in.setNetException(ex);
 
         }
