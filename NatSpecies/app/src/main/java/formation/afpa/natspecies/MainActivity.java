@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -39,30 +41,18 @@ public class MainActivity extends AppCompatActivity implements InetworkListener 
         @Override
         public void handleMessage(Message msg) {
             //si le thread a renvoyé qq chose
-            if(msg.obj != null) {
+            if (msg.obj != null) {
 
-                try {
-                    specielist = new ArrayList<Specie>();
-                    JSONArray jsonArray = new JSONArray(msg.obj);
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObj = jsonArray.getJSONObject(i);
-                        String commonName = jsonObj.getString("commonName");
-                        String latinName = jsonObj.getString("latinName");
-                        int id = jsonObj.getInt("id");
+                //appel de ma super fonction qui transforme du Json en ArrayList
+                specielist = jsonTranformer((String) msg.obj);
 
-                        Specie newSpecie = new Specie(id, commonName, latinName);
-                        specielist.add(newSpecie);
-                    }
-                } catch (Exception JSONException){
-
-                }
                 ArrayAdapter myAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, specielist);
                 listViewSpecies.setAdapter(myAdapter);
             }
 
         }
     };
-    
+
     ////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////Méthodes d'InteworkListener///////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements InetworkListener 
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,11 +86,8 @@ public class MainActivity extends AppCompatActivity implements InetworkListener 
         ListSpeciesThread listThread = new ListSpeciesThread(this);
         listThread.start();
 
-//        TextView welcomeText = findViewById(R.id.textViewWelcome);
-//        TextView textSpecies = findViewById(R.id.textView2);
 
-
-       listViewSpecies = findViewById(R.id.listView);
+        listViewSpecies = findViewById(R.id.listView);
 
         //surcharge de la fonction onItemClick pour pouvoir charger le text de textView avec le common et latin name de Specie cliquée
         listViewSpecies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -118,6 +104,27 @@ public class MainActivity extends AppCompatActivity implements InetworkListener 
             }
         });
 
+
+        FloatingActionButton add = findViewById(R.id.addActionButton);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent().setClass(MainActivity.this, CreateOrUpdateActivity.class);
+               // startActivity(intent);
+                startActivityForResult(intent, 1);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                ListSpeciesThread listThread = new ListSpeciesThread(this);
+                listThread.start();
+            }
+        }
     }
 
     @Override
@@ -141,6 +148,30 @@ public class MainActivity extends AppCompatActivity implements InetworkListener 
 
         return super.onOptionsItemSelected(item);
     }
+
+    //fonction qui prend en entrée du Json et retourne un ArrayList de Movies
+    public ArrayList<Specie> jsonTranformer(String ret) {
+        ArrayList<Specie> species = new ArrayList<>();
+        try {
+
+            JSONArray jsonArray = new JSONArray(ret);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObj = jsonArray.getJSONObject(i);
+                String commonName = jsonObj.getString("commonName");
+                String latinName = jsonObj.getString("latinName");
+                int id = jsonObj.getInt("id");
+
+                Specie newSpecie = new Specie(id, commonName, latinName);
+                specielist.add(newSpecie);
+            }
+        } catch (Exception JSONException) {
+
+        }
+        return species;
+    }
+
+
 
 
 }
